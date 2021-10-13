@@ -35,13 +35,14 @@ def location(request):
     listeMail = []
 
     for loc in locationvelo:
-        
-
-
+        if loc.mail_envoyer == "False" and date == (loc.date_fin -10):
+            loc.mail_envoyer = "True"
+            loc.save()
+            listeMail.append(loc.lv_loc_id.loc_client.cli_mail)
 
 
     if request.method=='POST':
-        send_mail('La bicycletteBleue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, a, fail_silently=False)
+        send_mail('La bicycletteBleue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
 
     locations = []
     for loc in locationvelo:

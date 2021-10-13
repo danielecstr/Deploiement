@@ -18,7 +18,7 @@ class Client(models.Model):
     cli_membre = models.CharField(db_column='CLI_MEMBRE', blank=True, null=True, max_length=100)  # Field name made lowercase.
     cli_date_debut = models.DateField()  # Field name made lowercase.
     cli_date_fin = models.DateField()  # Field name made lowercase.
-    cli_mail_envoyer = models.BooleanField(default="False")
+
     def __str__(self):
         return self.cli_nom
 
@@ -77,6 +77,7 @@ class Location_Velo(models.Model):
     date_fin   = models.DateField()  # Field name made lowercase.
     lv_loc_id = models.ForeignKey(Location, on_delete=models.CASCADE)  # Field name made lowercase.
     lv_vel_id = models.ForeignKey(Velo, on_delete=models.CASCADE)  # Field name made lowercase.
+    mail_envoyer = models.CharField(default="False")
     def ends_within_10_days(self):
         return (date.today() - self.date_fin).days <= -12
     def termine(self):
