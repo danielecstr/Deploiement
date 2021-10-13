@@ -35,7 +35,7 @@ def location(request):
     listeMail = []
 
     for loc in locationvelo:
-        if loc.mail_envoyer == "False" and date == (loc.date_fin -10):
+        if loc.mail_envoyer == "False" and not loc.date_fin.ends_within_10_days:
             loc.mail_envoyer = "True"
             loc.save()
             listeMail.append(loc.lv_loc_id.loc_client.cli_mail)
