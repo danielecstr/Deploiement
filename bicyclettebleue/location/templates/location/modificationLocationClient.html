@@ -1,0 +1,63 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
+     {%  csrf_token %}
+<div>
+    <br>
+    <h1>Diminuer ou prolonger votre location</h1>
+    <br>
+  <div class="form-group">
+    <label>Statut : </label>
+    <input  class="form-control"  disabled="disabled" value="{{location.lv_loc_id.loc_statut}}"
+  </div>
+    <br>
+  <div class="form-group">
+    <label>Client :</label>
+    <input  class="form-control"  disabled="disabled" value="{{request.user.first_name}} {{request.user.last_name}}"
+    <br>
+  </div>
+  <div class="form-group">
+    <label>Date de debut :</label>
+    <input  class="form-control"  disabled="disabled" value="{{location.date_debut}}"
+  </div>
+  <div class="form-group">
+      <br>
+    <label>Date de fin<sup style="color: red">*</sup> :</label>
+    <input  class="form-control" type="date"  placeholder="Date fin" for={{formLocationVelo.date_fin}}
+    <font size="2px"> Ancienne date : {{vieille_date}}</font>
+  </div>
+  <div class="form-group">
+    <label>Velo :</label>
+    <input  class="form-control"  disabled="disabled" value="{{location.lv_vel_id.vel_nom}}"
+    <br>
+  </div>
+    <a style="color: red">{{messageErreur}}</a><br><br>
+    <a href="{% url 'location:locationClient' request.user.id%}"  class="btn btn-primary">Annuler</a>
+    <input type="submit" value="Envoyer" class="btn btn-primary" >
+    <br>
+    <br>
+</div>
+</form>
+
+
+<br><br>
+
+{% endblock contenu %}

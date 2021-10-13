@@ -1,0 +1,82 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+
+
+    <!--
+    <form action="" method="POST">
+       {%  csrf_token %}
+
+    <p style="margin-left: 22%">Statut : {{ formLocation.loc_statut }}</p>
+    <br>
+    <p style="margin-left: 22%"> Client : {{ formLocation.loc_client }} &nbsp; &nbsp; &nbsp; &nbsp; <a href="{% url 'client:nouveauClient'%}" class="btn btn-primary" role="button" aria-pressed="true">Nouveau client</a> </p>
+    <br>
+    <p style="margin-left: 22%"> Date de debut : {{ formLocationVelo.date_debut }}</p>
+    <br>
+    <p style="margin-left: 22%">Date de fin : {{ formLocationVelo.date_fin }}</p>
+    <br>
+    <p style="margin-left: 22%">Velo choisis : {{ formLocationVelo.lv_vel_id }}</p>
+    <br>
+    <input type="submit" value="Envoyer" class="btn btn-primary" style="margin-left: 45%">
+    </form>
+    -->
+
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
+     {%  csrf_token %}
+<div>
+    <br>
+    <h1>Ajouter une location</h1>
+    <br>
+  <div class="form-group">
+    <label>Statut : </label>
+    <select  class="form-control"  placeholder="Statut" for= {{formLocation.loc_statut}}
+  </div>
+  <div class="form-group">
+    <label>Client :</label>
+    <select  class="form-control"  placeholder="Client" for={{formLocation.loc_client}}
+    <br>
+    <a href="{% url 'client:nouveauClient'%}" class="btn btn-primary" role="button" aria-pressed="true">Nouveau client</a>
+  </div>
+  <div class="form-group">
+    <label>Date de debut :</label>
+    <input  class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
+  </div>
+  <div class="form-group">
+    <label>Date de fin :</label>
+    <input  class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
+     <a style="color: red">{{messageErreur}}</a><br>
+  </div>
+
+
+  <div class="form-group">
+    <label>Velo :</label>
+    <select  class="form-control"  placeholder="Date fin" for={{formLocationVelo.lv_vel_id}}
+  </div>
+    <a href="{% url 'location:index'%}"  class="btn btn-primary">Annuler</a>
+    <input type="submit" value="Envoyer" class="btn btn-primary" >
+    <br>
+    <br>
+</div>
+</form>
+
+
+<br><br>
+
+{% endblock contenu %}

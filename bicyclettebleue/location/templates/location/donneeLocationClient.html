@@ -1,0 +1,90 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+<!-- Google Font -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+<br><br>
+<h1 style="margin-left: 21%">Veuillez confirmer vos données personelles :</h1>
+<br>
+<br>
+<h4 style="margin-left: 22%">Vos données : </h4><br>
+
+<!--<form action="" method="POST">
+        {%  csrf_token %}
+
+     <p style="margin-left: 22%">Nom : {{clientForm.cli_nom}}</p>
+     <br>
+     <p style="margin-left: 22%">Prenom : {{clientForm.cli_prenom}}</p>
+     <br>
+     <p style="margin-left: 22%">Email : {{clientForm.cli_mail}}</p>
+     <br>
+     <p style="margin-left: 22%">Adresse : {{clientForm.cli_adresseposte}}</p>
+     <br>
+     <p style="margin-left: 22%">Date de naissance : {{clientForm.cli_date_naissance}}</p>
+     <br>
+     <p style="margin-left: 22%">Téléphone : {{clientForm.cli_tel}}</p>
+     <br>
+
+     <h4 style="margin-left: 22%">Le vélo : </h4><br>
+     <a style="margin-left: 22%"> Nom : {{ velo.vel_nom }} </a><br>
+     <a style="margin-left: 22%"> Numéro du cadre : {{ velo.vel_num_cadre }}</a><br>
+     <a style="margin-left: 22%"> Marque: {{ velo.vel_marque}}</a><br>
+     <a style="margin-left: 22%"> Couleur : {{ velo.vel_couleur }} </a><br>
+     <a style="margin-left: 22%"> Type : {{ velo.vel_type }} </a><br>
+     <a style="margin-left: 22%"> Remarque : {{ messageDescriptionVelo }}</a><br><br><br>
+
+
+     <a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-bottom:20px ; margin-left: 22%">Annuler</a>
+     <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" style="margin-left: 45%">
+
+</form>-->
+
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
+     {%  csrf_token %}
+  <div class="form-group">
+    <label>Nom<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre prenom" for={{clientForm.cli_nom}}
+  </div>
+  <div class="form-group">
+    <label>Prenom<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre nom" for={{clientForm.cli_prenom}}
+  </div>
+  <div class="form-group">
+    <label>E-mail<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre email" for={{clientForm.cli_mail}}
+  </div>
+  <div class="form-group">
+    <label>Adresse<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre adresse" for={{clientForm.cli_adresseposte}}
+  </div>
+  <div class="form-group">
+  <label>Date de naissance<sup style="color: red">*</sup> :</label>
+    <input type="date" class="form-control"  placeholder="Votre date de naissance" for={{clientForm.cli_date_naissance}}
+    <a style="color: red">{{messageErreur}}</a>
+  </div>
+  <div class="form-group">
+    <label>Téléphone<sup style="color: red">*</sup> :</label>
+    <input  class="form-control"  placeholder="Votre numéro de téléphone" for={{clientForm.cli_tel}}
+  </div>
+
+
+  <a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
+  <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
+
+</form>
+
+
+<br><br>
+<br><br>
+<br><br>
+
+{% endblock contenu %}

@@ -1,0 +1,83 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+
+{% extends 'template_base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block contenu %}
+
+<!-- CSS Libraries -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+<br>
+<h1 style="margin-left: 10%">Liste des locations</h1>
+<br>
+<h3 style="margin-left: 10%">Vous avez {{ messageNbLocation }}</h3>
+<br>
+
+<br>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Numéro location</th>
+      <th scope="col">Statut location</th>
+      <th scope="col">Nom client</th>
+      <th scope="col">Nom vélo</th>
+      <th scope="col">Date début</th>
+      <th scope="col">Date fin</th>
+      <th scope="col">Temps restant</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for locationvelo in locations %}
+    <tr>
+      <th scope="row">{{ locationvelo.lv_loc_id.loc_num}}</th>
+      <td><a href="{% url 'location:detailsLocationClient' locationvelo.id %}">{{ locationvelo.lv_loc_id.loc_statut}}</a></td>
+      <td><a>{{locationvelo.lv_loc_id.loc_client.cli_nom}} {{locationvelo.lv_loc_id.loc_client.cli_prenom}}</a></td>
+      <td>{{locationvelo.lv_vel_id.vel_nom}}</td>
+      <td>{{locationvelo.date_debut}}</td>
+      <td>{{locationvelo.date_fin}}</td>
+
+
+
+      {% if locationvelo.ends_within_10_days and not locationvelo.termine and not locationvelo.annule%}
+        <td style="color: green">{{locationvelo.date_fin|timeuntil:date}}</td>
+      {% elif locationvelo.termine %}
+        <td style="color: blue">Terminé</td>
+      {% elif locationvelo.annule %}
+        <td style="color: blue">Annulé</td>
+      {% else %}
+        <td style="color: red">{{locationvelo.date_fin|timeuntil:date}}</td>
+      {% endif %}
+
+      {% if not locationvelo.termine and not locationvelo.annule %}
+        <td><a href="{% url 'location:modifierLocationClient'  locationvelo.id%}">Diminuer/Prolonger</a></td>
+        <td><a href="{% url 'location:supprimerLocationClient' locationvelo.id%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
+      {% else %}
+        <td> </td>
+        <td></td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+<!-- Button -->
+<a href="{% url 'location:choixVeloClient' %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-left: 10%">Ajouter une nouvelle location</a>
+
+<br>
+
+
+{% endblock %}

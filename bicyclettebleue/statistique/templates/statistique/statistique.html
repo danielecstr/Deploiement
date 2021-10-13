@@ -1,0 +1,102 @@
+<!---
+Auteur : Daniele Castro
+Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
+-->
+
+{% extends 'template_base.html' %}
+{% load static %}
+{% block contenu %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/billboard.js/dist/billboard.min.js"></script>
+
+
+
+  <body>
+    <div class="container">
+      <h1 style="text-align: center">Nombre de location par mois</h1>
+      <div>
+        <canvas id="myChart"></canvas>
+      </div>
+
+    </div>
+
+  </body>
+
+  <script>
+    var ctx = document.getElementById("myChart").getContext("2d");
+    var donnees = {{stats}};
+    var myChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: [
+          "Janvier",
+          "Février",
+          "Mars",
+          "Avril",
+          "Mai",
+          "Juin",
+          "Juillet",
+          "Aôut",
+          "Septembre",
+          "Octobre",
+          "Novembre",
+          "Décembre",
+        ],
+        datasets: [
+          {
+            label: "Nombre de debut de location",
+            data: donnees,
+            backgroundColor: "#1F35A5",
+          },
+        ],
+      },
+    });
+  </script>
+
+  <br><br><br>
+
+    <div class="col-xs-12 text-center">
+      <h2>Les types de vélos</h2>  <br>
+    </div>
+
+    <div id="donut-chart"></div>
+
+    <script>
+      var chart = bb.generate({
+        data: {
+          columns: [
+            ["Blue", 4],
+            ["orange", 4],
+            ["green", 2],
+            ["red", 2],
+          ],
+          type: "donut",
+          onclick: function (d, i) {
+            console.log("onclick", d, i);
+          },
+          onover: function (d, i) {
+            console.log("onover", d, i);
+          },
+          onout: function (d, i) {
+            console.log("onout", d, i);
+          },
+        },
+        donut: {
+          title: "100%",
+        },
+        bindto: "#donut-chart",
+      });
+    </script>
+
+
+
+<br><br><br>
+
+
+{% endblock %}

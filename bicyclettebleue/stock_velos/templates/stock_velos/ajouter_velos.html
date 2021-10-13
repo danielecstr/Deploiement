@@ -1,0 +1,75 @@
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+
+        <!-- CSS Libraries -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+
+
+<h1> Ajouter un vélo </h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- <p1> Photo: </p1> {{formVelo.vel_photo}} -->
+
+    <p1 style="margin-left: 500px"> Numéro cadre: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_num_cadre}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Nom: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_nom}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Type: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_type}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Marque: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_marque}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Couleur: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_couleur}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Etat: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_etat}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Statut: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_statut}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Remarque: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_remarque}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Local: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.local_id}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Donateur: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.don_id}}</div>
+    <br>
+    <p1 style="margin-left: 500px"> Photo: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formVelo.vel_photo}}</div>
+    <br>
+<div  style="margin:0% 0% 5% 50%;">
+    <a href="{% url 'stock_velos:indexStockVelos'%}"  class="btn btn-primary" >Annuler</a>
+    <input type="submit" class="btn btn-primary" role="button">
+</div>
+
+</form>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+        <!-- Google Font -->
+
+
+        <!-- CSS Libraries -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+
+
+    <br>
+<h1 style="margin-left: 10%">Liste des Clients</h1>
+    <br>
+    <h3 style="margin-left: 10%">Il y a {{ messageNbClient }}</h3>
+<br>
+ <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >Numéro client</th>
+      <th scope="col">Nom et prenom client</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Date de naissance</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">Membre ?</th>
+      <th scope="col">Date debut ?</th>
+      <th scope="col">Date fin ?</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for client in client %}
+    <tr>
+      <th  scope="row">{{client.cli_id}}</th>
+      <td><a>{{client.cli_nom}} {{client.cli_prenom}}</a></td>
+      <td>{{client.cli_adresseposte}}</td>
+      <td>{{client.cli_date_naissance}}</td>
+      <td>{{client.cli_mail}}</td>
+      <td>{{client.cli_tel}}</td>
+      <td>{{client.cli_membre}}</td>
+      <td>{{client.cli_date_debut}}</td>
+      <td>{{client.cli_date_fin}}</td>
+      <td><a href="{% url 'client:modifierClient'  client.cli_id%}">Modifier</a></td>
+      <td><a href="{% url 'client:supprimerClient' client.cli_id%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<br>
+
+<!-- Button -->
+<a href="{% url 'client:nouveauClient' %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-left: 10%">Ajouter un nouveau client</a>
+
+<br>
+
+
+{% endblock %}

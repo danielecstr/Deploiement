@@ -1,0 +1,115 @@
+<!---
+Auteur : Daniele Castro
+-->
+
+
+
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- CSS Libraries -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+<br>
+
+<br>
+<!--
+<div class="container bootstrap snipets">
+
+  <br>
+
+   <div class="row flow-offset-1" >
+     {% for velo in veloDispo %}
+     <div class="col-xs-6 col-md-4" >
+       <div class="product tumbnail thumbnail-3"><a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}"><img src="{% static 'img/velo/velo1.png' %}" alt="" style="width: 350px; height: 280px"></a>
+         <div class="caption">
+             <h6><a href="#">{{velo.vel_marque}}</a></h6><span class="price"></span>
+             <a>Type de vélo : {{velo.vel_type}}</a><br>
+             <a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}">Details</a>
+         </div>
+       </div>
+     </div>
+     {% endfor %}
+   </div>
+ </div>
+-->
+<h1 class="titre" style="text-align: center; color: #1F35A5" >Commencez par choisir un vélo</h1>
+<h6 style="text-align: center; color: red"> {{messageAttention}}</h6>
+{% if messageAttention != "" %}
+    <h6 style="text-align: center; color: red"><a href="{% url 'location:locationClient'  request.user.id %}">Voir mes locations.</a></h6>
+{% endif %}
+<br>
+<br>
+
+
+<style>
+    body{
+    background:#f5f5f5;
+    margin-top:20px;}
+
+.card-img-tiles {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    background-color: #fff;
+    z-index: 5
+}
+
+.card-img-tiles .main-img>img,
+.card-img-tiles .thumblist>img {
+    display: block;
+    width: 100%
+}
+
+.card-img-tiles .main-img {
+    width: 67%;
+    padding-right: .375rem
+}
+
+.card-img-tiles .thumblist {
+    width: 33%;
+    padding-left: .375rem
+}
+
+.card-img-tiles .thumblist>img {
+    margin-bottom: .75rem
+}
+
+.card-img-tiles .thumblist>img:last-child {
+    margin-bottom: 0
+}
+
+.mb-grid-gutter {
+    margin-bottom: 30px !important;
+}
+
+</style>
+<div class="container pb-5 mb-sm-1">
+    <!-- Categories grid-->
+    <div class="row">
+        <!-- Category-->
+        {% for velo in veloDispo %}
+        <div class="col-md-4 col-sm-6">
+            <div class="card border-0 mb-grid-gutter">
+                <img src="{% static 'img/velo/velo1.png' %}" alt="Clothing" style="width: 350px; height: 280px">
+                <div class="card-body border mt-n1 py-4 text-center">
+                    <h2 class="h5 mb-1" style="color: #1F35A5">{{velo.vel_marque}}</h2><span class="d-block mb-3 font-size-xs text-muted"> Type : {{velo.vel_type}}</span>
+                    <a class="btn btn-pill btn-outline-primary btn-sm" href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" >Détails</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock contenu %}
