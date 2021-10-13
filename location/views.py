@@ -115,7 +115,7 @@ def confirmationLocation(request, pk):
 
 
 
-        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, location.loc_client.cli_mail, fail_silently=False)
+        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
 
         return redirect('/location/locationEnAttente')
 
@@ -252,7 +252,7 @@ def refuseLocationEnAttente(request, pk):
         else:
             messageMail = "Votre demande de location à bien été refusé"
 
-        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, location.loc_client.cli_mail, fail_silently=False)
+        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
 
         if location.loc_statut == "Demande de diminution" or location.loc_statut == "Demande de prolongation":
             location.loc_statut = "En cours"
