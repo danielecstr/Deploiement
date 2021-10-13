@@ -93,8 +93,7 @@ ENV/
 .ropeproject
 
 # Database stuff
-*.sqlite3
-db.sqlite3
+
 
 # Atom config file
 .editorconfig
