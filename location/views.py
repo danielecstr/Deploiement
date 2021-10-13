@@ -45,7 +45,7 @@ def location(request):
                   "\n\nToute l'équipe Bicyclette Bleue vous souhaite une bonne journée."
 
 
-    #send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
+    send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
 
     locations = []
     for loc in locationvelo:
@@ -100,10 +100,23 @@ def confirmationLocation(request, pk):
     locationVelo = Location_Velo.objects.get(id=pk)
 
     if request.method=='POST':
+        if location.loc_statut == "Demande de prolongation":
+            messageMail = "Votre demande de prolongation de la location à été accepter"
+        elif location.loc_statut == "Demande de diminution":
+            messageMail = "Votre demande diminution de location à été accepter"
+        else:
+            messageMail = "Votre demande de location à bien été acceptée"
+
         locationVelo.lv_vel_id.vel_statut = "Reservé"
         locationVelo.lv_vel_id.save()
         location.loc_statut = "En cours"
         location.save()
+
+
+
+
+        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, location.loc_client.cli_mail, fail_silently=False)
+
         return redirect('/location/locationEnAttente')
 
     context = {
@@ -232,6 +245,15 @@ def refuseLocationEnAttente(request, pk):
     location = Location.objects.get(loc_id=pk)
     locationVelo = Location_Velo.objects.get(id=pk)
     if request.method=='POST':
+        if location.loc_statut == "Demande de prolongation":
+            messageMail = "Votre demande de prolongation de la location à été refusée"
+        elif location.loc_statut == "Demande de diminution":
+            messageMail = "Votre demande diminution de location à été refusée"
+        else:
+            messageMail = "Votre demande de location à bien été refusé"
+
+        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, location.loc_client.cli_mail, fail_silently=False)
+
         if location.loc_statut == "Demande de diminution" or location.loc_statut == "Demande de prolongation":
             location.loc_statut = "En cours"
             locationVelo.date_fin = location.date_modifier
