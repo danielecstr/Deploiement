@@ -32,7 +32,10 @@ def location(request):
     elif location_number == 0:
         messageNbLocation = f' Aucune location'
     date =datetime.date.today()
-    a = ['daniele.cstr@eduge.ch','fatma.adn@eduge.ch']
+    listeMail = []
+
+    for loc in locationvelo:
+
 
 
 
@@ -52,7 +55,6 @@ def location(request):
         'date' : date,
         'myfilter' : myfilter,
         'locations' : locations,
-        'a' : a
     }
     return render(request, 'location/location.html', context)
 

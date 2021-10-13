@@ -18,7 +18,7 @@ class Client(models.Model):
     cli_membre = models.CharField(db_column='CLI_MEMBRE', blank=True, null=True, max_length=100)  # Field name made lowercase.
     cli_date_debut = models.DateField()  # Field name made lowercase.
     cli_date_fin = models.DateField()  # Field name made lowercase.
-
+    cli_mail_envoyer = models.BooleanField(default="False")
     def __str__(self):
         return self.cli_nom
 
