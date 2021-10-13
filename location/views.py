@@ -35,7 +35,7 @@ def location(request):
 
 
     if request.method == "POST":
-        send_mail('La bicycletteBLeue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, ['kolokah652@settags.com'], fail_silently=False)
+        send_mail('La bicycletteBLeue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, request.user.email, fail_silently=False)
 
     locations = []
     for loc in locationvelo:
