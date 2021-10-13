@@ -19,7 +19,7 @@ from .filters import LocationFilter
 import datetime
 
 from django.core.mail import send_mail
-
+from django.conf import settings
 
 @staff_member_required
 @login_required(login_url='/compte/login')
@@ -32,7 +32,10 @@ def location(request):
     elif location_number == 0:
         messageNbLocation = f' Aucune location'
     date =datetime.date.today()
-    #send_mail('La bicycletteBLeue', 'Bonjour, nous vous envoyons cette email pour vous prévenir que votre location se termine dans 10 jours.', 'castrodanieletest@gmail.com', ['soofpnrdkuxeth@pussport.com'], fail_silently=False)
+
+
+    if request.method == "POST":
+        send_mail('La bicycletteBLeue', 'Bonjour, nous vous envoyons cette email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, ['kolokah652@settags.com'], fail_silently=False)
 
     locations = []
     for loc in locationvelo:
