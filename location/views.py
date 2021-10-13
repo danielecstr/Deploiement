@@ -36,7 +36,7 @@ def location(request):
 
     if request.method=='POST':
         send_mail('La bicycletteBleue', 'Bonjour, ' + a + ' nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, ['daniele.cstr@eduge.ch'], fail_silently=False)
-    
+
     locations = []
     for loc in locationvelo:
         if loc.lv_loc_id.loc_statut != "En attente" and loc.lv_loc_id.loc_statut != "Demande de prolongation" and loc.lv_loc_id.loc_statut != "Demande de diminution":
