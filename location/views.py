@@ -32,7 +32,7 @@ def location(request):
     elif location_number == 0:
         messageNbLocation = f' Aucune location'
     date =datetime.date.today()
-    a = request.user.last_name
+    a = request.user.email
 
     if request.method == "POST":
         send_mail('La bicycletteBLeue', 'Bonjour, ' + a + ' nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, ['daniele.cstr@eduge.ch'], fail_silently=False)
@@ -49,6 +49,7 @@ def location(request):
         'date' : date,
         'myfilter' : myfilter,
         'locations' : locations,
+        'a' : a
     }
     return render(request, 'location/location.html', context)
 
