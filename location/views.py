@@ -41,7 +41,7 @@ def location(request):
             listeMail.append(loc.lv_loc_id.loc_client.cli_mail)
 
 
-    #send_mail('La bicycletteBleue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
+    send_mail('La bicycletteBleue', 'Bonjour, nous vous envoyons cet email pour vous prévenir que votre location se termine dans 10 jours.', settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
 
     locations = []
     for loc in locationvelo:
