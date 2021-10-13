@@ -22,9 +22,9 @@ Auteur : Daniele Castro
 
 <br>
 
-<form method="POST">
+<form>
     {% csrf_token %}
-    <input type="submit" value="Envoyer Mail" class="btn btn-primary" >
+    <input type="submit" method="POST" value="Envoyer Mail" class="btn btn-primary">
 </form>
 
  <table class="table">
