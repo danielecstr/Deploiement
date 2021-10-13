@@ -1,0 +1,9 @@
+pip install django
+
+pip install django-filter
+
+pip install python-dateutil
+
+pip install django-mathfilters
+
+python -m pip install Pillow
