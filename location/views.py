@@ -35,7 +35,7 @@ def location(request):
     listeMail = []
 
     for loc in locationvelo:
-
+        
 
 
 
