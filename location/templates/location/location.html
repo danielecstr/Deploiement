@@ -22,10 +22,7 @@ Auteur : Daniele Castro
 
 <br>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Envoyer Mail" class="btn btn-primary">
-</form>
+
 
  <table class="table">
   <thead class="thead-dark" >
@@ -50,7 +47,7 @@ Auteur : Daniele Castro
       <td>{{loc.lv_vel_id.vel_nom}}</td>
       <td>{{loc.date_debut}}</td>
       <td>{{loc.date_fin}}</td>
-      {% if loc.ends_within_10_days and not loc.termine and not loc.annule%}
+      {% if not loc.ends_within_10_days and not loc.termine and not loc.annule%}
         <td style="color: green">{{loc.date_fin|timeuntil:date}}</td>
       {% elif loc.termine %}
         <td style="color: blue">Terminé</td>
@@ -72,7 +69,8 @@ Auteur : Daniele Castro
 
 <!-- Button -->
 <a href="{% url 'location:nouvelleLocation' %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-left: 10% ;margin-bottom:20px">Ajouter une nouvelle location</a>
-
+<br><br><br>
+<a>{{ listeMail }}</a>
 <br><br><br><br><br><br>
 
 <h3 class="titre" style="margin-left: 10%">{{ messageNbLocation }}</h3>
