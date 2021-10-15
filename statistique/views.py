@@ -4,6 +4,8 @@ Auteur : Daniele Castro
 from django.db.models.functions import ExtractMonth
 from django.shortcuts import render
 from .models import Location_Velo
+from .models import Velo
+
 
 def statistique(request):
     locations = Location_Velo.objects.all()
@@ -62,7 +64,30 @@ def statistique(request):
     nbNov,
     nbDec,]
 
+    typeVelo = [['Type', 'Nombre de type']]
+
+    velos = Velo.objects.all()
+
+    # c = [['Task', 'Hours per Day'],
+    #       ['Work',     11],
+    #       ['Eat',      2],
+    #       ['A',  2],
+    #       ['Watch TV', 2],
+    #       ['Sleep',    7]]
+    type = []
+    for velo in velos:
+        type.append(velo.vel_type)
+
+
+
+    for velo in velos:
+        list = [velo.vel_type, type.count(velo.vel_type)]
+        if list not in typeVelo:
+            typeVelo.append(list)
+
+
     context = {
         'stats' : stats,
+        'typeVelo' : typeVelo
     }
     return render(request, 'statistique/statistique.html', context)

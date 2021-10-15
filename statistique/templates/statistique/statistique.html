@@ -23,7 +23,7 @@ Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
       <div>
         <canvas id="myChart"></canvas>
       </div>
-
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
     </div>
 
   </body>
@@ -61,40 +61,22 @@ Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
 
   <br><br><br>
 
-    <div class="col-xs-12 text-center">
-      <h2>Les types de vélos</h2>  <br>
-    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{typeVelo|safe}});
 
-    <div id="donut-chart"></div>
+        var options = {
+          title: 'Types de vélo',
+          is3D: true,
+        };
 
-    <script>
-      var chart = bb.generate({
-        data: {
-          columns: [
-            ["Blue", 4],
-            ["orange", 4],
-            ["green", 2],
-            ["red", 2],
-          ],
-          type: "donut",
-          onclick: function (d, i) {
-            console.log("onclick", d, i);
-          },
-          onover: function (d, i) {
-            console.log("onover", d, i);
-          },
-          onout: function (d, i) {
-            console.log("onout", d, i);
-          },
-        },
-        donut: {
-          title: "100%",
-        },
-        bindto: "#donut-chart",
-      });
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
     </script>
-
-
 
 <br><br><br>
 
