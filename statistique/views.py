@@ -8,8 +8,9 @@ from .models import Velo
 
 
 def statistique(request):
+
+    #Graphique de location par mois
     locations = Location_Velo.objects.all()
-    stats = []
     nbJanv = 0
     nbFev = 0
     nbMars = 0
@@ -24,7 +25,6 @@ def statistique(request):
     nbDec = 0
 
     for l in locations:
-
         if l.date_debut.strftime('%B') == "January":
             nbJanv +=1
         elif l.date_debut.strftime('%B') == "February":
@@ -49,8 +49,6 @@ def statistique(request):
             nbNov +=1
         elif l.date_debut.strftime('%B') == "December":
             nbDec +=1
-
-
     stats=[nbJanv,
     nbFev,
     nbMars,
@@ -64,30 +62,32 @@ def statistique(request):
     nbNov,
     nbDec,]
 
+    #Graphique en forme de "donut" pour les types de vélos
     typeVelo = [['Type', 'Nombre de type']]
-
     velos = Velo.objects.all()
-
-    # c = [['Task', 'Hours per Day'],
-    #       ['Work',     11],
-    #       ['Eat',      2],
-    #       ['A',  2],
-    #       ['Watch TV', 2],
-    #       ['Sleep',    7]]
     type = []
     for velo in velos:
         type.append(velo.vel_type)
-
-
-
     for velo in velos:
         list = [velo.vel_type, type.count(velo.vel_type)]
         if list not in typeVelo:
             typeVelo.append(list)
 
+    #Graphique pour l'évolution des location par années.
+    liste= []
+    annees = []
+    for loc in locations:
+        annees.append(loc.date_debut.strftime('%Y'))
+    for loc in locations:
+        list = [loc.date_debut.strftime('%Y'), annees.count(loc.date_debut.strftime('%Y'))]
+        if list not in liste:
+            liste.append(list)
+    liste.sort() #Permet de remettre les années dans le bon ordre
+    liste.insert(0, ['Années', 'Locations']) # insert a la premiere postition les noms des colonnes/lignes
 
     context = {
         'stats' : stats,
-        'typeVelo' : typeVelo
+        'typeVelo' : typeVelo,
+        'liste' : liste
     }
     return render(request, 'statistique/statistique.html', context)

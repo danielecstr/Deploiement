@@ -19,15 +19,20 @@ Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
 
   <body>
     <div class="container">
-      <h1 style="text-align: center">Nombre de location par mois</h1>
+      <br><br>
+        <h1 style="text-align: center">Nombre de location par mois</h1>
+        <br>
       <div>
         <canvas id="myChart"></canvas>
       </div>
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+        <br><br>
+    <h1 style="text-align: center">Pourcentage par type de vélo</h1>
+    <div id="piechart_3d" style="width: 900px; height: 500px; margin-left: 20%"></div>
+    <h1 style="text-align: center">Les locations au fil des années</h1>
+    <div id="curve_chart" style="width: 900px; height: 500px; margin-left: 12%"></div>
+
     </div>
-
   </body>
-
   <script>
     var ctx = document.getElementById("myChart").getContext("2d");
     var donnees = {{stats}};
@@ -69,7 +74,6 @@ Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
         var data = google.visualization.arrayToDataTable({{typeVelo|safe}});
 
         var options = {
-          title: 'Types de vélo',
           is3D: true,
         };
 
@@ -78,7 +82,24 @@ Source : https://www.geeksforgeeks.org/how-to-create-chart-using-bootstrap/
       }
     </script>
 
-<br><br><br>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable({{ liste|safe }});
+        var options = {
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 
 {% endblock %}
