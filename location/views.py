@@ -32,28 +32,33 @@ def location(request):
     elif location_number == 0:
         messageNbLocation = f' Aucune location'
     date =datetime.date.today()
-    listeMail = []
 
+
+    # Envoye un mail aux clients qui finissent leurs location dans 10 jours
+    listeMail = []
     for loc in locationvelo:
         if loc.mail_envoyer == "False" and loc.ends_within_10_days() and not loc.termine() and not loc.annule():
             loc.mail_envoyer = "True"
             loc.save()
             listeMail.append(loc.lv_loc_id.loc_client.cli_mail)
-
     messageMail = 'Bonjour, nous vous envoyons ce mail pour vous prévenir que votre location se termine dans 10 jours.' \
                   '\nVeuillez ne pas oublier de rendre votre vélo ou prolonger votre location depuis notre site : http://danielecstr.pythonanywhere.com/.' \
                   "\n\nToute l'équipe Bicyclette Bleue vous souhaite une bonne journée."
-
-
     send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
 
+    #Liste des locations
     locations = []
     for loc in locationvelo:
         if loc.lv_loc_id.loc_statut != "En attente" and loc.lv_loc_id.loc_statut != "Demande de prolongation" and loc.lv_loc_id.loc_statut != "Demande de diminution":
             locations.append(loc)
 
     myfilter = LocationFilter(request.GET, queryset=locationvelo)
-    locationvelo = myfilter.qs
+    locations = myfilter.qs
+
+
+
+
+
     context = {
         'messageNbLocation' : messageNbLocation,
         'date' : date,
@@ -109,6 +114,8 @@ def confirmationLocation(request, pk):
 
         locationVelo.lv_vel_id.vel_statut = "Reservé"
         locationVelo.lv_vel_id.save()
+        locationVelo.loc_statut = "En cours"
+        locationVelo.save()
         location.loc_statut = "En cours"
         location.save()
 
@@ -183,6 +190,8 @@ def nouvelleLocation(request):
                 loca.save()
                 nbmax = Location.objects.latest('loc_id').loc_id
                 locaVelo = Location_Velo(date_fin=formLocationVelo.cleaned_data.get('date_fin'), date_debut=formLocationVelo.cleaned_data.get('date_debut'),lv_loc_id_id=nbmax, id=nbmax,lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
+                locaVelo.lv_vel_id.vel_statut= "Reservé"
+                locaVelo.lv_vel_id.save()
                 locaVelo.save()
                 return redirect('/location')
 
@@ -256,12 +265,14 @@ def refuseLocationEnAttente(request, pk):
 
         if location.loc_statut == "Demande de diminution" or location.loc_statut == "Demande de prolongation":
             location.loc_statut = "En cours"
+            locationVelo.loc_statut = "En cours"
             locationVelo.date_fin = location.date_modifier
             location.save()
             locationVelo.save()
             return redirect('/location/locationEnAttente')
         else:
             locationVelo.lv_vel_id.vel_statut = "Libre"
+            locationVelo.loc_statut = "Annulé"
             locationVelo.lv_vel_id.save()
             location.loc_statut = "Annulé"
             location.save()

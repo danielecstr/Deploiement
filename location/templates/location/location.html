@@ -13,15 +13,15 @@ Auteur : Daniele Castro
 <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
 <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
 <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
-
-
-
     <br>
 <h1 class="titre" style="margin-left: 10%">Liste des locations</h1>
     <br>
-
 <br>
-
+<form method="get">
+<div class="btn-group btn-group-sm mb-3" role="group" aria-label="Groupe de petits boutons" style="margin-left: 10%">
+    {{myfilter.form}}&nbsp;
+<button class="btn btn-primary" type="submit" style="" >Rechercher</button></div>
+</form>
 
 <div class="table-responsive">
  <table class="table">

@@ -8,4 +8,4 @@ from .models import Location_Velo
 class LocationFilter(django_filters.FilterSet):
     class Meta:
         model=Location_Velo
-        fields = '__all__'
+        fields = ['loc_statut']

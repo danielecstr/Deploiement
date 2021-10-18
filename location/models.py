@@ -20,7 +20,7 @@ class Client(models.Model):
     cli_date_fin = models.DateField()  # Field name made lowercase.
 
     def __str__(self):
-        return self.cli_nom
+        return self.cli_nom  + " " + self.cli_prenom + " (" + str(self.cli_date_naissance) + ")"
 
     class Meta:
         managed = False
@@ -73,11 +73,16 @@ class Location(models.Model):
 
 
 class Location_Velo(models.Model):
+    STAUT_CHOICES = [
+        ('En cours', 'En cours'),
+        ('Annulé', 'Annulé'),
+        ('Terminé', 'Terminé'), ]
     date_debut = models.DateField()  # Field name made lowercase.
     date_fin   = models.DateField()  # Field name made lowercase.
     lv_loc_id = models.ForeignKey(Location, on_delete=models.CASCADE)  # Field name made lowercase.
     lv_vel_id = models.ForeignKey(Velo, on_delete=models.CASCADE)  # Field name made lowercase.
     mail_envoyer = models.CharField(default="False", max_length=30)
+    loc_statut = models.CharField(db_column='LOC_STATUT', blank=True, null=True, max_length=30,choices=STAUT_CHOICES, default='En cours')  # Field name made lowercase.
     def ends_within_10_days(self):
         return (self.date_fin - date.today()).days < 11
     def termine(self):
