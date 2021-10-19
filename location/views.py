@@ -34,7 +34,7 @@ def location(request):
     date =datetime.date.today()
 
 
-    # Envoye un mail aux clients qui finissent leurs location dans 10 jours
+    #Envoye un mail aux clients qui finissent leurs location dans 10 jours
     listeMail = []
     for loc in locationvelo:
         if loc.mail_envoyer == "False" and loc.ends_within_10_days() and not loc.termine() and not loc.annule():
@@ -52,12 +52,9 @@ def location(request):
         if loc.lv_loc_id.loc_statut != "En attente" and loc.lv_loc_id.loc_statut != "Demande de prolongation" and loc.lv_loc_id.loc_statut != "Demande de diminution":
             locations.append(loc)
 
+    #Filtrer les locations grace aux statuts
     myfilter = LocationFilter(request.GET, queryset=locationvelo)
     locations = myfilter.qs
-
-
-
-
 
     context = {
         'messageNbLocation' : messageNbLocation,
@@ -85,10 +82,6 @@ def locationEnAttente(request):
         messageNbLocation = f' Total des locations : une seule location'
     elif location_number == 0:
         messageNbLocation = f' Aucune location en attente'
-
-
-
-
     context = {
         'messageNbLocation' : messageNbLocation,
         'locationvelo': locationvelo,
@@ -119,9 +112,7 @@ def confirmationLocation(request, pk):
         location.loc_statut = "En cours"
         location.save()
 
-
-
-
+        #Permet d'envoyer un mail selon la décision du membre
         send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
 
         return redirect('/location/locationEnAttente')
