@@ -177,9 +177,11 @@ def nouvelleLocation(request):
                     nb = 1
                 else:
                     nb = Location.objects.latest('loc_id').loc_num + 1
+
                 loca = Location(loc_statut=formLocation.cleaned_data.get('loc_statut'), loc_client_id=formLocation.cleaned_data.get('loc_client').cli_id, loc_num=nb)
                 loca.save()
                 nbmax = Location.objects.latest('loc_id').loc_id
+                
                 locaVelo = Location_Velo(date_fin=formLocationVelo.cleaned_data.get('date_fin'), date_debut=formLocationVelo.cleaned_data.get('date_debut'),lv_loc_id_id=nbmax, id=nbmax,lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
                 locaVelo.lv_vel_id.vel_statut= "Reservé"
                 locaVelo.lv_vel_id.save()

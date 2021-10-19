@@ -84,6 +84,7 @@ class Location_Velo(models.Model):
     lv_vel_id = models.ForeignKey(Velo, on_delete=models.CASCADE)  # Field name made lowercase.
     mail_envoyer = models.CharField(default="False", max_length=30)
     loc_statut = models.CharField(db_column='LOC_STATUT', blank=True, null=True, max_length=30,choices=STAUT_CHOICES, default='En cours')  # Field name made lowercase.
+    total_location = models.IntegerField(db_column='TOTAL_LOCATION', blank=False)
     def ends_within_10_days(self):
         return (self.date_fin - date.today()).days < 11
     def termine(self):

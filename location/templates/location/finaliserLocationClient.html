@@ -17,19 +17,7 @@ Auteur : Daniele Castro
 <h1 style="margin-left: 22%">Finalisez votre location</h1>
 <br>
 <br>
-<!--
-    <form  action="" method="POST">
-    {%  csrf_token %}
-    <a style="margin-left: 22%">Date de debut : {{formLocationVelo.date_debut}}</a><br>
-    <br>
-    <a style="margin-left: 22%">Date de fin :   {{formLocationVelo.date_fin}}</a>
-    <br>
-    <br>
-    <br>
-    <a href="{% url 'location:donneeLocationClient' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-bottom:20px ; margin-left: 22%">Annuler</a>
-    <input type="submit" value="Envoyer" class="btn btn-primary">
-    </form>
--->
+
 
 <form style="margin-left: 25% ; margin-right: 30%" action="" method="POST">
      {%  csrf_token %}
@@ -42,7 +30,7 @@ Auteur : Daniele Castro
     <input  class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
   </div>
   <a style="color: red">{{messageErreur}}</a><br><br>
-  <a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
+  <a href="{% url 'stock_velos:indexDetailsVeloClient' velo.vel_num%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
   <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
 
 
