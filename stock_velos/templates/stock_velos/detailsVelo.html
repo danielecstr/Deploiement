@@ -1,0 +1,57 @@
+<!---
+Auteur : Stanley Rochat
+-->
+
+
+{% extends 'template_base.html' %}
+{% load static %}
+{% block contenu %}
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+    <br>
+    <h1 class="detailLocation"> Les détails du vélo :</h1>
+    <br>
+    <div class="detailLocation">
+        <img src="{% static 'img/velo/velo1.png' %}" alt="" style="width: 350px; height: 280px"><br><br>
+        {{velo.vel_photo}} <br>
+        Nom : {{ velo.vel_nom}} <br>
+        N° : {{velo.vel_num}} <br>
+        Numéro cadre : {{velo.vel_num_cadre}} <br>
+        Local : {{velo.local_id}} <br>
+
+        {% if velo.don_id %}}
+        Donateur : {{velo.don_id}} <br>
+        {% else %}
+        Donateur : Aucun <br>
+        {% endif %}
+
+        Etat du vélo : {{velo.vel_etat}} <br>
+        <br>
+        Type : {{ velo.vel_type }} <br>
+        Marque : {{ velo.vel_marque}} <br>
+        Couleur : {{ velo.vel_couleur }} <br>
+        <br>
+        Statut de location : {{ velo.vel_statut }} <br>
+
+        {% if velo.vel_remarque %}
+        Remarques : {{velo.vel_remarque}} <br>
+        {% else %}
+        Remarques : <br>
+        {% endif %}
+
+
+        <a href="{% url 'stock_velos:indexStockVelos' %}" class="btn btn-primary" role="button" aria-pressed="true"
+           style="margin-top: 2%"> <--- Retour au stock de velos </a>
+    </div>
+
+<br><br>
+
+
+
+
+{% endblock contenu %}

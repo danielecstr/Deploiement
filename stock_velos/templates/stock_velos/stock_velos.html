@@ -23,14 +23,11 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <!---<th class="firstcolonne">
-            <p1>Sélection</p1>
-        </th>-->
         <th class="ligne0">
             <p1>Photo</p1>
 
         <th class="ligne0">
-            <p1>ID</p1>
+            <p1>N°</p1>
         </th>
         <th class="ligne0">
             <p1>N° cadre</p1>
@@ -79,13 +76,13 @@
             <img src="{% static 'img/velo/non.png' %}" alt="Image" style="width: 35px; height: 35px">
         </td>
         <td>
-            <p1>{{velo.vel_id}}</p1>
+            <p1>{{velo.vel_num}}</p1>
         </td>
         <td>
             <p1>{{velo.vel_num_cadre}}</p1>
         </td>
         <td>
-            <p1>{{velo.vel_nom}}</p1>
+            <p1><a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_num %}">{{velo.vel_nom}}</a></p1>
         </td>
         <td>
             <p1>{{velo.vel_type}}</p1>
@@ -106,10 +103,10 @@
             <p1>{{velo.vel_remarque}}</p1>
         </td>
         <td>
-            <p1>{{velo.local_id_id}}</p1>
+            <p1>{{velo.local_id}}</p1>
         </td>
         <td>
-            <p1>{{velo.don_id_id}}</p1>
+            <p1>{{velo.don_id}}</p1>
         </td>
         <td>
           <a href="{% url 'stock_velos:indexModifierVelo'  velo.vel_id%}">Modifier</a>

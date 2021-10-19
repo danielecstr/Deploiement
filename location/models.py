@@ -40,6 +40,7 @@ class Velo(models.Model):
     vel_statut = models.TextField(db_column='VEL_STATUT', blank=True, null=True)  # Field name made lowercase.
     vel_etat = models.TextField(db_column='VEL_ETAT', blank=True, null=True)  # Field name made lowercase.
     vel_remarque = models.TextField(db_column='VEL_REMARQUE', blank=True, null=True)  # Field name made lowercase.
+    vel_num = models.IntegerField(db_column='VEL_NUM', blank=True)
 
     def __str__(self):
         return self.vel_nom

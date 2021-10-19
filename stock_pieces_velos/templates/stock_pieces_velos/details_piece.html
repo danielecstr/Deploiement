@@ -1,0 +1,57 @@
+<!---
+Auteur : Stanley Rochat
+-->
+
+
+{% extends 'template_base.html' %}
+{% load static %}
+{% block contenu %}
+
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+    <br>
+    <h1 class="detailLocation"> Les détails de la pièce :</h1>
+    <br>
+    <div class="detailLocation">
+        <img src="#" alt="" style="width: 350px; height: 280px"><br><br>
+        {{piece.piece_photo}} <br>
+        Type de pièce : {{ piece.piece_type}} <br>
+        N° de la pièce : {{piece.piece_num}} <br>
+        Local : {{piece.local_id}} <br>
+
+        {% if piece.fourni_id %}}
+        Fournisseur : {{piece.fourni_id}} <br>
+        {% else %}
+        Fournisseur : Aucun <br>
+        {% endif %}
+        <br>
+        Type : {{ piece.piece_type }} <br>
+        Marque : {{ piece.piece_marque}} <br>
+        Couleur : {{ piece.piece_couleur }} <br>
+        <br>
+        Statut de commande: {{ piece.commande_fourni_id }} <br>
+
+        {% if piece.piece_remarque %}
+        Remarques : {{piece.piece_remarque}} <br>
+        {% else %}
+        Remarques : <br>
+        {% endif %}
+
+        <a href="#" role="button" class="btn btn-primary" aria-pressed="true"
+    style="margin-left: 30% ">Passer une commande</a>
+<!-- ajouter un href -->
+
+        <a href="{% url 'stock_pieces_velos:indexStockPiecesVelos' %}" class="btn btn-primary" role="button" aria-pressed="true"
+           style="margin-top: 2%"> <--- Retour au stock de velos </a>
+    </div>
+
+<br><br>
+
+
+
+
+{% endblock contenu %}

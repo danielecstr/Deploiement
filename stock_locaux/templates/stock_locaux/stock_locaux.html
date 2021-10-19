@@ -40,7 +40,7 @@
             <p1>Nombre de vélos en stock</p1>
         </th>
         <th class="ligne00">
-            <p1></p1>
+            <p1>{{ Nb_velos }}</p1>
         </th>
         <th class="ligne00">
             <p1></p1>
@@ -65,7 +65,7 @@
         <p1>{{local.local_capacite}}</p1>
         </td>
         <td>
-        <p1>{{local.local_nb_velo}}</p1>
+        <p1>{{ local.local_nb_velo }}</p1>
         </td>
         <td>
           <a href="#">Modifier</a>
@@ -77,15 +77,9 @@
 {% endfor %}
 
 </table>
-<!---
-<button type="button">Click Me!</button>
 
-<div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
-</div>
+<a href="{% url 'stock_locaux:indexNouveauLoc' %}" role="button" class="btn btn-primary" aria-pressed="true"
+style="margin-left: 10% ">Ajouter un local</a>
 
-<div>
-    <img src="{% static 'img/carousel-3.jpg' %}" alt="LocauxVelos" width="30" height="40" class="photoStock">
-</div>-->
 
 {% endblock %}

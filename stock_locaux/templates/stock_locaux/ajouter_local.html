@@ -1,0 +1,53 @@
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+
+<!-- CSS Libraries -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+
+
+<h1> Ajouter un Local </h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- <p1> Photo: </p1> {{formLocal.loc_photo}} -->
+
+    <p1 style="margin-left: 500px"> Nom: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formLocal.local_nom}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Adresse postale: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formLocal.local_adresseposte}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> NPA: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formLocal.local_npa}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Capacité: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formLocal.local_capacite}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Nombre de vélos stockés: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formLocal.local_nb_velo}}</div>
+    <br>
+
+<div  style="margin:0% 0% 5% 50%;">
+    <a href="{% url 'stock_locaux:indexStockLocaux'%}"  class="btn btn-primary" >Annuler</a>
+    <input type="submit" class="btn btn-primary" role="button">
+</div>
+
+</form>
+
+
+
+
+
+{% endblock %}

@@ -31,7 +31,7 @@ Auteur : Daniele Castro
    <div class="row flow-offset-1" >
      {% for velo in veloDispo %}
      <div class="col-xs-6 col-md-4" >
-       <div class="product tumbnail thumbnail-3"><a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}"><img src="{% static 'img/velo/velo1.png' %}" alt="" style="width: 350px; height: 280px"></a>
+       <div class="product tumbnail thumbnail-3"><a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_num%}"><img src="{% static 'img/velo/velo1.png' %}" alt="" style="width: 350px; height: 280px"></a>
          <div class="caption">
              <h6><a href="#">{{velo.vel_marque}}</a></h6><span class="price"></span>
              <a>Type de vélo : {{velo.vel_type}}</a><br>
@@ -105,7 +105,7 @@ Auteur : Daniele Castro
                 <img src="{% static 'img/velo/velo1.png' %}" alt="Clothing" style="width: 350px; height: 280px">
                 <div class="card-body border mt-n1 py-4 text-center">
                     <h2 class="h5 mb-1" style="color: #1F35A5">{{velo.vel_marque}}</h2><span class="d-block mb-3 font-size-xs text-muted"> Type : {{velo.vel_type}}</span>
-                    <a class="btn btn-pill btn-outline-primary btn-sm" href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" >Détails</a>
+                    <a class="btn btn-pill btn-outline-primary btn-sm" href="{% url 'stock_velos:indexDetailsVeloClient' velo.vel_num%}" >Détails</a>
                 </div>
             </div>
         </div>

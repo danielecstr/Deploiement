@@ -1,0 +1,72 @@
+{% extends 'template_base.html' %}
+{% load static %}
+
+{% block contenu %}
+
+
+        <!-- CSS Libraries -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+
+
+<h1> Ajouter une pièce  </h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <br>
+    <p1 style="margin-left: 500px"> Photo: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_photo}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Numéro cadre<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_num_cadre}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Type de pièce<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_type}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Type de vélo<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_type_velo}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Marque de la pièce<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_marque}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Nombre de pièces<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_nb}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Remarque: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.piece_remarque}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Local<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.local_id}}</div>
+    <br>
+
+    <p1 style="margin-left: 500px"> Fourniseur<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.fourni_id}}</div>
+
+    <br>
+    <p1 style="margin-left: 500px"> Commande: &nbsp; </p1>
+    <div style="margin-left: 500px">{{formPiece.commande_fourni_id}}</div>
+    <br>
+
+<div  style="margin:0% 0% 5% 50%;">
+    <a href="{% url 'stock_pieces_velos:indexStockPiecesVelos'%}"  class="btn btn-primary" >Annuler</a>
+    <input type="submit" class="btn btn-primary" role="button">
+</div>
+
+</form>
+
+
+
+
+
+{% endblock %}
