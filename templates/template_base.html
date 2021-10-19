@@ -111,6 +111,7 @@
                                     <a href="{% url 'stock_locaux:indexStockLocaux' %}" class="dropdown-item">Locaux</a>
                                 </div>
                             </div>
+                            {% if not user.is_superuser%}
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Partie client</a>
                                 <div class="dropdown-menu">
@@ -119,6 +120,7 @@
                                     <a href="{% url 'compte:monCompte' %}" class="dropdown-item">Mon compte</a>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endif %}
                             <a href="{% url 'accueil:a_propos' %}" class="nav-item nav-link">A propos</a>
                             <a href="{% url 'accueil:contact' %}" class="nav-item nav-link">Contact</a>
