@@ -13,7 +13,7 @@
 
 
 <br>
-<h1 style="margin-left: 10%"> Supprimer un/des vélo(s) </h1>
+<h4 style="margin-left: 22%">Voulez-vous vraiment supprimer ce vélo?</h4>
 <br>
 <br>
 <form action="{% url 'stock_velos:indexSupprimerVelo' item.vel_id %}" method="post">
@@ -100,11 +100,9 @@
 
 </table>
     <br>
-<p1 style="margin-left: 10%"> Êtes-vous sûr de vouloir supprimer cet élément ? </p1>
     <br>
-    <a href="{% url 'stock_velos:indexStockVelos'%}" class="btn btn-warning" style="margin-left: 10%" >Annuler</a>
-    <input class="btn btn-danger" type="submit" name="Confirmer" value="Confirmer">
-
+    <a href="{% url 'stock_velos:indexStockVelos'%}"  class="btn btn-primary" style="margin-left: 22%">Annuler</a>
+    <input class="btn btn-danger" type="submit" value="Supprimer" name="Confirmer" >
 
 
 </form>

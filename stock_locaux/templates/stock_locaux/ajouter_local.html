@@ -4,42 +4,55 @@
 {% block contenu %}
 
 
-<!-- CSS Libraries -->
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-<link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
-<link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
-<link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
 
 
 
 
-<h1> Ajouter un Local </h1>
 
-<form action="" method="post">
+
+<form  style="margin-left: 25% ; margin-right: 30%" action="" method="post">
     {% csrf_token %}
     <!-- <p1> Photo: </p1> {{formLocal.loc_photo}} -->
-
-    <p1 style="margin-left: 500px"> Nom: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formLocal.local_nom}}</div>
     <br>
+    <h1> Ajouter un local </h1>
+    <br><br>
 
-    <p1 style="margin-left: 500px"> Adresse postale: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formLocal.local_adresseposte}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Nom<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formLocal.local_nom}}
+    </div>
 
-    <p1 style="margin-left: 500px"> NPA: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formLocal.local_npa}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Adresse postale<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formLocal.local_adresseposte}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Capacité: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formLocal.local_capacite}}</div>
-    <br>
+    <div class="form-group">
+    <p1>NPA<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formLocal.local_npa}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Nombre de vélos stockés: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formLocal.local_nb_velo}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Capacité<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formLocal.local_capacite}}
+    </div>
 
-<div  style="margin:0% 0% 5% 50%;">
+    <div class="form-group">
+    <p1>Nombre de vélos stockés<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formLocal.local_nb_velo}}
+    </div>
+
+
+<div>
     <a href="{% url 'stock_locaux:indexStockLocaux'%}"  class="btn btn-primary" >Annuler</a>
     <input type="submit" class="btn btn-primary" role="button">
 </div>

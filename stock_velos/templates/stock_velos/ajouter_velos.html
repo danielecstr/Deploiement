@@ -4,8 +4,12 @@
 {% block contenu %}
 
 
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
         <!-- CSS Libraries -->
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="{% static 'lib/flaticon/font/flaticon.css' %}" rel="stylesheet">
         <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
         <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
@@ -13,55 +17,73 @@
 
 
 
-<h1> Ajouter un vélo </h1>
-
-<form action="" method="post">
+<form style="margin-left: 25% ; margin-right: 30%" action="" method="post">
     {% csrf_token %}
     <!-- <p1> Photo: </p1> {{formVelo.vel_photo}} -->
-
-    <p1 style="margin-left: 500px"> Numéro cadre<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_num_cadre}}</div>
     <br>
+    <h1> Ajouter un vélo </h1>
 
-    <p1 style="margin-left: 500px"> Nom<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_nom}}</div>
+    <br>
     <br>
 
-    <p1 style="margin-left: 500px"> Type<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_type}}</div>
-    <br>
+    <div class="form-group">
+     <p1>Numéro cadre<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formVelo.vel_num_cadre}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Marque<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_marque}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Nom<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formVelo.vel_nom}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Couleur<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_couleur}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Type<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.vel_type}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Etat<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_etat}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Marque<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.vel_marque}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Statut<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_statut}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Couleur<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.vel_couleur}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Remarque<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_remarque}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Etat<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.vel_etat}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Local<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.local_id}}</div>
-    <br>
+    <div class="form-group">
+    <p1>Statut<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.vel_statut}}
+    </div>
 
-    <p1 style="margin-left: 500px"> Donateur: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.don_id}}</div>
+     <div class="form-group">
+    <p1>Remarque: &nbsp; </p1>
+    <input  class="form-control"  type="text"  for="{{formVelo.vel_remarque}}
+    </div>
+
+     <div class="form-group">
+    <p1>Local<p1 style="color: red">*</p1>: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.local_id}}
+    </div>
+
+    <div class="form-group">
+    <p1>Donateur: &nbsp; </p1>
+    <select  class="form-control"  type="text"  for="{{formVelo.don_id}}
+    </div>
+
+     <div class="form-group">
+    <p1>Photo: &nbsp; </p1>
+    <photo  class="form-control"  type="text"  for="{{formVelo.vel_photo}}
+    </div>
+
+
     <br>
-    <p1 style="margin-left: 500px"> Photo: &nbsp; </p1>
-    <div style="margin-left: 500px">{{formVelo.vel_photo}}</div>
-    <br>
-<div  style="margin:0% 0% 5% 50%;">
+<div>
     <a href="{% url 'stock_velos:indexStockVelos'%}"  class="btn btn-primary" >Annuler</a>
     <input type="submit" class="btn btn-primary" role="button">
 </div>
