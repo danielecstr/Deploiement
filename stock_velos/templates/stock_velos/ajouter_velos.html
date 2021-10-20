@@ -28,57 +28,57 @@
 
     <div class="form-group">
      <p1>Numéro cadre<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <input  class="form-control"  type="text"  for="{{formVelo.vel_num_cadre}}
+    <input  class="form-control"  for={{formVelo.vel_num_cadre}}
     </div>
 
     <div class="form-group">
     <p1>Nom<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <input  class="form-control"  type="text"  for="{{formVelo.vel_nom}}
+    <input  class="form-control"  for={{formVelo.vel_nom}}
     </div>
 
     <div class="form-group">
     <p1>Type<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.vel_type}}
+    <select  class="form-control"  for={{formVelo.vel_type}}
     </div>
 
     <div class="form-group">
     <p1>Marque<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.vel_marque}}
+    <select  class="form-control" for={{formVelo.vel_marque}}
     </div>
 
     <div class="form-group">
     <p1>Couleur<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.vel_couleur}}
+    <select  class="form-control"   for={{formVelo.vel_couleur}}
     </div>
 
     <div class="form-group">
     <p1>Etat<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.vel_etat}}
+    <select  class="form-control"   for={{formVelo.vel_etat}}
     </div>
 
     <div class="form-group">
     <p1>Statut<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.vel_statut}}
+    <select  class="form-control"    for={{formVelo.vel_statut}}
     </div>
 
      <div class="form-group">
     <p1>Remarque: &nbsp; </p1>
-    <input  class="form-control"  type="text"  for="{{formVelo.vel_remarque}}
+    <input  class="form-control"    for={{formVelo.vel_remarque}}
     </div>
 
      <div class="form-group">
     <p1>Local<p1 style="color: red">*</p1>: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.local_id}}
+    <select  class="form-control"    for={{formVelo.local_id}}
     </div>
 
     <div class="form-group">
     <p1>Donateur: &nbsp; </p1>
-    <select  class="form-control"  type="text"  for="{{formVelo.don_id}}
+    <select  class="form-control"    for={{formVelo.don_id}}
     </div>
 
      <div class="form-group">
     <p1>Photo: &nbsp; </p1>
-    <photo  class="form-control"  type="text"  for="{{formVelo.vel_photo}}
+    <input  class="form-control"   for={{formVelo.vel_photo}}
     </div>
 
 
@@ -87,6 +87,7 @@
     <a href="{% url 'stock_velos:indexStockVelos'%}"  class="btn btn-primary" >Annuler</a>
     <input type="submit" class="btn btn-primary" role="button">
 </div>
+
 
 </form>
 

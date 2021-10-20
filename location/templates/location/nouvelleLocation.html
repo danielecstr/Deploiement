@@ -47,28 +47,32 @@ Auteur : Daniele Castro
   <div class="form-group">
     <label>Statut : </label>
     <select  class="form-control"  placeholder="Statut" for={{formLocation.loc_statut}}
-            </div>
+  </div>
+
   <div class="form-group">
     <label>Client :</label>
     <select  class="form-control"  placeholder="Client" for={{formLocation.loc_client}}
     <br>
     <a href="{% url 'client:nouveauClient'%}" class="btn btn-primary" role="button" aria-pressed="true">Nouveau client</a>
   </div>
+
   <div class="form-group">
     <label>Date de debut :</label>
     <input  class="form-control" type="date" placeholder="Date debut" for={{formLocationVelo.date_debut}}
   </div>
+
   <div class="form-group">
     <label>Date de fin :</label>
     <input  class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
      <a style="color: red">{{messageErreur}}</a><br>
   </div>
 
-
   <div class="form-group">
     <label>Velo :</label>
     <select  class="form-control"  placeholder="Date fin" for={{formLocationVelo.lv_vel_id}}
   </div>
+
+
     <a href="{% url 'location:index'%}"  class="btn btn-primary">Annuler</a>
     <input type="submit" value="Envoyer" class="btn btn-primary" >
     <br>
