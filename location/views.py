@@ -132,13 +132,18 @@ def detailsLocation(request, id):
     if locationvelo.lv_vel_id.vel_remarque != "" :
         messageDescriptionVelo = locationvelo.lv_vel_id.vel_remarque
 
+    nbMois = relativedelta(locationvelo.date_fin,locationvelo.date_debut).months
+    prix = 50 + ((nbMois-3) * 5)
+    montantTotal = prix + 150
 
     date =datetime.date.today()
 
     context = {
         'locationvelo' : locationvelo,
         'messageDescriptionVelo' : messageDescriptionVelo,
-        'date': date
+        'date': date,
+        'prix' : prix,
+        'montantTotal' : montantTotal
     }
     return render(request, 'location/detailsLocation.html', context)
 
