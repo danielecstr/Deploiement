@@ -318,22 +318,16 @@ def detailsLocationClient(request, id):
 
     date =datetime.date.today()
 
-    locations = []
-    locationAll = Location_Velo.objects.all()
-    messageErreur = ""
-    for loc in locationAll:
-        if request.user.id == str(loc.lv_loc_id.loc_client.cli_id) and loc.lv_loc_id.loc_statut == "En cours":
-            locations.append(loc)
-    nbLocationEnCours = len(locations)
-    if nbLocationEnCours >= 3:
-        messageErreur = "Vous ne pouvez pas avoir plus de 3 location en cours."
 
+    nbMois = relativedelta(locationvelo.date_fin,locationvelo.date_debut).months
+    prix = 50 + ((nbMois-3) * 5)
+    montantTotal = prix + 150
     context = {
         'locationvelo' : locationvelo,
         'messageDescriptionVelo' : messageDescriptionVelo,
         'date': date,
-        'nbLocationEnCours' : nbLocationEnCours,
-        'messageErreur' : messageErreur
+        'prix' : prix,
+        'montantTotal': montantTotal,
     }
     return render(request, 'location/detailsLocationClient.html', context)
 
