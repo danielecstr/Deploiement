@@ -185,7 +185,7 @@ def nouvelleLocation(request):
                 loca = Location(loc_statut=formLocation.cleaned_data.get('loc_statut'), loc_client_id=formLocation.cleaned_data.get('loc_client').cli_id, loc_num=nb)
                 loca.save()
                 nbmax = Location.objects.latest('loc_id').loc_id
-                locaVelo = Location_Velo(date_fin=formLocationVelo.cleaned_data.get('date_fin'), date_debut=formLocationVelo.cleaned_data.get('date_debut'),lv_loc_id_id=nbmax, id=nbmax,lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
+                locaVelo = Location_Velo(loc_statut=formLocation.cleaned_data.get('loc_statut'),date_fin=formLocationVelo.cleaned_data.get('date_fin'), date_debut=formLocationVelo.cleaned_data.get('date_debut'),lv_loc_id_id=nbmax, id=nbmax,lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
                 locaVelo.lv_vel_id.vel_statut= "Reservé"
                 locaVelo.lv_vel_id.save()
                 locaVelo.save()
@@ -295,6 +295,8 @@ def locationClient(request, pk):
         if pk == str(loc.lv_loc_id.loc_client.cli_id):
             locations.append(loc)
             if loc.date_fin < date:
+                loc.loc_statut = "Terminé"
+                loc.save()
                 loc.lv_loc_id.loc_statut = "Terminé"
                 loc.lv_loc_id.save()
 
@@ -337,36 +339,14 @@ def detailsLocationClient(request, id):
     return render(request, 'location/detailsLocationClient.html', context)
 
 
-#def nouvelleLocation(request):
-#    formLocationVelo = LocationVeloForm()
-    #    formLocation = LocationForm()
-    #   if request.method=='POST':
-    #       formLocation = LocationForm(request.POST)
-    #       formLocationVelo = LocationVeloForm(request.POST)
-    #      if formLocation.is_valid() and formLocationVelo.is_valid():
-    #          nb = Location.objects.latest('loc_id').loc_num + 1
-    #           loca = Location(loc_statut= formLocation.cleaned_data.get('loc_statut'), loc_client=formLocation.cleaned_data.get('loc_client'), loc_num=nb)
-    #            loca.save()
-    #           nbmax = Location.objects.latest('loc_id').loc_id
-    #            locaVelo = Location_Velo(date_fin=formLocationVelo.cleaned_data.get('date_fin'),
-    #                                     date_debut=formLocationVelo,
-    #                                     lv_loc_id_id=nbmax,
-    #                                     id=nbmax,
-    #                                    lv_vel_id_id=formLocationVelo.cleaned_data.get('lv_vel_id').vel_id)
-    #            locaVelo.save()
-    #            return redirect('/location')
-    #    context = {
-    #        'formLocation' : formLocation,
-    #        'formLocationVelo' : formLocationVelo,
-    #    }
-#    return render(request, 'location/nouvelleLocation.html', context)
-
 @login_required(login_url='/compte/login')
 def supprimerLocationClient(request, pk):
     location = Location.objects.get(loc_id=pk)
     pk2 = location.loc_id
     locationVelo = Location_Velo.objects.get(lv_loc_id=pk2)
     if request.method=='POST':
+        locationVelo.loc_statut = "Annulé"
+        locationVelo.save()
         location.loc_statut = "Annulé"
         location.save()
         locationVelo.lv_vel_id.vel_statut = "Libre"
@@ -493,7 +473,7 @@ def finaliserLocationClient(request, pk):
                 loca = Location(loc_statut="En attente", loc_client_id=client.cli_id, loc_num=nb)
                 loca.save()
                 nbmax = Location.objects.latest('loc_id').loc_id
-                locaVelo = Location_Velo(date_fin=formLocationVelo.cleaned_data.get('date_fin'),
+                locaVelo = Location_Velo(loc_statut="En attente", date_fin=formLocationVelo.cleaned_data.get('date_fin'),
                                      date_debut=formLocationVelo.cleaned_data.get('date_debut'), lv_loc_id_id=nbmax,
                                      id=nbmax, lv_vel_id_id=velo.vel_id)
                 locaVelo.save()
