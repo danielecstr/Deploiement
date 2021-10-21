@@ -18,7 +18,7 @@ Auteur : Daniele Castro
     <div class="detailLocation">
         <p>Le statut de la location numéro {{ locationvelo.lv_loc_id.loc_id }} est :  <b>{{ locationvelo.lv_loc_id.loc_statut }}</b></p>
 
-
+        <p>Le prix de la location est :  <b>{{ prix }}</b></p>
 
         {% if not locationvelo.termine %}
         <p>La location à commencé le <b>{{ locationvelo.date_debut }}</b> et prends fin le <b>{{ locationvelo.date_fin}}.</b></p>

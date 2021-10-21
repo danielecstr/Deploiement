@@ -42,7 +42,29 @@ Auteur : Daniele Castro
     <input  class="form-control" type="date" placeholder="Date fin" for={{formLocationVelo.date_fin}}
   </div>
   <a style="color: red">{{messageErreur}}</a><br><br>
-  <a href="{% url 'stock_velos:indexDetailsVelo' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
+    <div style="border: 1px solid">
+   <table class="table table-hover">
+    <thead>
+    <h4 style="text-align: center">Rappel des tarifs des locations</h4>
+    </thead>
+    <thead>
+    <tr>
+      <th scope="col">3 mois (le minimum)</th>
+      <th scope="col">rajout d'un mois supplémentaire</th>
+      <th scope="col">caution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>50 CHF</td>
+      <td>+5 CHF</td>
+      <td>150 CHF</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>
+  <a href="{% url 'location:donneeLocationClient' velo.vel_id%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
   <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
 
 
