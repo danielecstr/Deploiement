@@ -6,4 +6,7 @@ pip install python-dateutil
 
 pip install django-mathfilters
 
+pip install jsmin
+
 python -m pip install Pillow
+
