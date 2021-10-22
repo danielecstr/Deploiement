@@ -3,7 +3,14 @@ Auteur : Fatma Aydin
 """
 from django.db import models
 
+
 """
+from django.contrib.auth.models import (
+    AbstractBaseUser, BaseUserManager, PermissionsMixin
+)
+from django.utils.translation import gettext_lazy as _
+
+
 class UserManager(BaseUserManager):
   User manager
     def _create_user(self, email, password=None, **extra_fields):
