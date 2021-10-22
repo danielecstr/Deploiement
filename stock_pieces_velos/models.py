@@ -165,6 +165,9 @@ class Fournisseur(models.Model):
     fourni_tel = models.IntegerField(db_column='FOURNI_TEL', blank=True, null=True)  # Field name made lowercase.
     fourni_npa = models.IntegerField(db_column='FOURNI_NPA', blank=True, null=True)  # Field name made lowercase.
     fourni_desc = models.TextField(db_column='FOURNI_DESC', blank=True, null=True)  # Field name made lowercase.
+    def __str__(self):
+        return self.fourni_nom
+
 
     class Meta:
         managed = False
@@ -220,8 +223,9 @@ class PieceCommandeFourni(models.Model):
 
 class PieceDeVelo(models.Model):
     MARQUE_CHOICES = [
-        ('Pas encore cherché', 'Pas encore cherché'),
-
+        ('ODI', 'ODI'),
+        ('Ashima', 'Ashima'),
+        ('Continental', 'Continental'),
     ]
 
     TYPE_CHOICES = [

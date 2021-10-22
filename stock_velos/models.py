@@ -160,6 +160,7 @@ class Velo(models.Model):
         ('Vélo tout-terrain', 'VTT'),
         ('Vélo de route', 'Vélo de route'),
         ('BMX', 'BMX'),
+        ('Vélo de ville', 'Vélo de ville'),
     ]
 
     ETAT_CHOICES = [
@@ -172,6 +173,7 @@ class Velo(models.Model):
         ('Réservation', 'Réservé'),
         ('Commande', 'En commande'),
         ('Location', 'En cours de location'),
+        ('En réparation', 'En réparation'),
     ]
 
     vel_id = models.AutoField(db_column='VEL_ID', primary_key=True, blank=True, null=False)  # Field name made lowercase.

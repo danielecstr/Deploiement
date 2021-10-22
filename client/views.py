@@ -14,6 +14,7 @@ def client(request):
     if client_number == 1:
         messageNbClient = f'{client_number} client :'
 
+
     context = {
         'client' : client,
         'messageNbClient' : messageNbClient,
