@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'mathfilters',
     'django_filters',
     'reparation',
-    'statistique'
+    'statistique',
+    'cal.apps.CalConfig', # fatma
 ]
 
 MIDDLEWARE = [

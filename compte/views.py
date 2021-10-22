@@ -1,3 +1,7 @@
+"""
+Auteur : Fatma Aydin
+"""
+
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -8,6 +12,35 @@ from .models import Client
 from .models import AuthUser
 import datetime
 from datetime import date
+
+
+"""
+Le bug se trouve dans ce code 
+
+def get_logged_user_from_request(request):
+    if 'loggeg_user_id' in request.session:
+        logged_user_id = request.session['logged_user_id']
+        if len(Client.objects.filter(id=logged_user_id)) ==1:
+            return Client.objects.get(id=logged_user_id)
+        else:
+            return None
+    else:
+        return None
+
+
+def modify_profile(request):
+        logged_user = get_logged_user_from_request(request)
+        if logged_user:
+            if len(request.GET) >0:
+                form = InscriptionForm(request.GET,instance=logged_user)
+            if form.is_valid():
+                form.save()
+                return redirect('/monCompte')
+            else:
+                return  render(request, 'monCompte.html', {'form':form})
+        else:
+            return redirect('inscription')
+"""
 
 def inscriptionPage(request):
     form = InscriptionForm()

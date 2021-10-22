@@ -1,6 +1,43 @@
+"""
+Auteur : Fatma Aydin
+"""
 from django.db import models
 
-# Create your models here.
+"""
+class UserManager(BaseUserManager):
+  User manager
+    def _create_user(self, email, password=None, **extra_fields):
+       Creates and returns a new user using an email address
+        if not email:  # check for an empty email
+            raise AttributeError("User must set an email address")
+        else:  # normalizes the provided email
+            email = self.normalize_email(email)
+
+        # create user
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)  # hashes/encrypts password
+        user.save(using=self._db)  # safe for multiple databases
+        return user
+
+    def create_user(self, email, password=None, **extra_fields):
+        Creates and returns a new user using an email address
+        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email, password, **extra_fields)
+
+    def create_staffuser(self, email, password=None, **extra_fields):
+        Creates and returns a new staffuser using an email address
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', False)
+        return self._create_user(email, password, **extra_fields)
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        Creates and returns a new superuser using an email address
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self._create_user(email, password, **extra_fields)
+
+"""
 
 class Client(models.Model):
     cli_id = models.AutoField(db_column='CLI_ID', primary_key=True)  # Field name made lowercase.
@@ -33,6 +70,7 @@ class AuthUser(models.Model):
     date_joined = models.DateTimeField()
     first_name = models.CharField(max_length=150)
     CLI_ID = models.ForeignKey(Client, on_delete=models.CASCADE)  # Field name made lowercase.
+    #MEMB_ID = models.ForeignKey(MembreComite, on_delete=models.CASCADE)
 
     class Meta:
         managed = False
