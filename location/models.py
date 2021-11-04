@@ -18,7 +18,7 @@ class Client(models.Model):
     cli_membre = models.CharField(db_column='CLI_MEMBRE', blank=True, null=True, max_length=100)  # Field name made lowercase.
     cli_date_debut = models.DateField()  # Field name made lowercase.
     cli_date_fin = models.DateField()  # Field name made lowercase.
-
+    cli_num = models.IntegerField(db_column='CLI_NUM', blank=False)
     def __str__(self):
         return self.cli_nom  + " " + self.cli_prenom + " (" + str(self.cli_date_naissance) + ")"
 
@@ -84,6 +84,7 @@ class Location_Velo(models.Model):
     lv_vel_id = models.ForeignKey(Velo, on_delete=models.CASCADE)  # Field name made lowercase.
     mail_envoyer = models.CharField(default="False", max_length=30)
     loc_statut = models.CharField(db_column='LOC_STATUT', blank=True, null=True, max_length=30,choices=STAUT_CHOICES, default='En cours')  # Field name made lowercase.
+    loc_num = models.IntegerField(db_column='LOC_NUM', blank=False)
     def ends_within_10_days(self):
         return (self.date_fin - date.today()).days < 11
     def termine(self):

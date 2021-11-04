@@ -42,7 +42,7 @@ Auteur : Daniele Castro
   {% for loc in locations %}
     <tr>
       <th scope="row">{{ loc.lv_loc_id.loc_num}}</th>
-      <td><a href="{% url 'location:detailsLocation' loc.id %}">{{ loc.lv_loc_id.loc_statut}}</a></td>
+      <td><a href="{% url 'location:detailsLocation' loc.loc_num %}">{{ loc.lv_loc_id.loc_statut}}</a></td>
       <td><a>{{loc.lv_loc_id.loc_client.cli_nom}} {{loc.lv_loc_id.loc_client.cli_prenom}}</a></td>
       <td>{{loc.lv_vel_id.vel_nom}}</td>
       <td>{{loc.date_debut}}</td>
@@ -56,8 +56,8 @@ Auteur : Daniele Castro
       {% else %}
         <td style="color: red">{{loc.date_fin|timeuntil:date}}</td>
       {% endif %}
-      <td><a href="{% url 'location:modifierLocation'  loc.id%}">Modifier</a></td>
-      <td><a href="{% url 'location:supprimerLocation' loc.id%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
+      <td><a href="{% url 'location:modifierLocation'  loc.loc_num%}">Modifier</a></td>
+      <td><a href="{% url 'location:supprimerLocation' loc.loc_num%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
     </tr>
   {% endfor %}
   </tbody>

@@ -41,7 +41,7 @@ Auteur : Daniele Castro
   {% for locationvelo in locations %}
     <tr>
       <th scope="row">{{ locationvelo.lv_loc_id.loc_num}}</th>
-      <td><a href="{% url 'location:detailsLocationClient' locationvelo.id %}">{{ locationvelo.lv_loc_id.loc_statut}}</a></td>
+      <td><a href="{% url 'location:detailsLocationClient' locationvelo.loc_num %}">{{ locationvelo.lv_loc_id.loc_statut}}</a></td>
       <td><a>{{locationvelo.lv_loc_id.loc_client.cli_nom}} {{locationvelo.lv_loc_id.loc_client.cli_prenom}}</a></td>
       <td>{{locationvelo.lv_vel_id.vel_nom}}</td>
       <td>{{locationvelo.date_debut}}</td>
@@ -60,8 +60,8 @@ Auteur : Daniele Castro
       {% endif %}
 
       {% if not locationvelo.termine and not locationvelo.annule %}
-        <td><a href="{% url 'location:modifierLocationClient'  locationvelo.id%}">Diminuer/Prolonger</a></td>
-        <td><a href="{% url 'location:supprimerLocationClient' locationvelo.id%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
+        <td><a href="{% url 'location:modifierLocationClient'  locationvelo.loc_num%}">Diminuer/Prolonger</a></td>
+        <td><a href="{% url 'location:supprimerLocationClient' locationvelo.loc_num%}"><img class="imagePoubelle" src="{% static 'img/poubelle.png' %}" alt="Image"></a></td>
       {% else %}
         <td> </td>
         <td></td>

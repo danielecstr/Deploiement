@@ -49,7 +49,7 @@ Auteur : Daniele Castro
 
 
   <a href="{% url 'stock_velos:indexDetailsVeloClient' velo.vel_num%}" class="btn btn-primary" role="button" aria-pressed="true" >Annuler</a>
-  <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_id%}" >
+  <input type="submit" value="Envoyer" class="btn btn-primary" href="{% url 'location:finaliserLocationClient' velo.vel_num%}" >
 
 </form>
 

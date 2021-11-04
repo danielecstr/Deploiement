@@ -15,7 +15,7 @@ Auteur : Daniele Castro
 <br>
 <h4 style="margin-left: 22%">Voulez-vous confirmer cette location?</h4>
 <br>
-<form action="{% url 'location:confirmationLocation' itemLocation.loc_id %}"  method="post">
+<form action="{% url 'location:confirmationLocation' itemLocation.loc_num %}"  method="post">
     {% csrf_token %}
 <table class="table">
   <thead class="thead-dark" >

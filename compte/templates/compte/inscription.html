@@ -28,7 +28,7 @@
 			width: 450px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #74cfbf;
+			background: #b9bbbe;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -61,7 +61,7 @@
 			padding: 0 8rem;
 		}
 		.input-group-text {
-			background: #f7ba5b !important;
+			background: #1F35A5 !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
@@ -87,14 +87,14 @@
                         {% csrf_token %}
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
                             {{form.first_name}}
 							<p style="color : red">&nbsp*</p> 										<!-- petite etoile -->
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
                             {{form.last_name}}
 							<p style="color : red">&nbsp*</p> 										<!-- petite etoile -->
@@ -150,12 +150,12 @@
 
 		//Query All input fields
 		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder="Nom d'utilisateur..";
-		form_fields[2].placeholder='Email..';
-		form_fields[3].placeholder="Mot de passe...";
-		form_fields[4].placeholder="Confirmer mot de passe...";
-		form_fields[5].placeholder="Prenom...";
-		form_fields[6].placeholder="Nom...";
+	    form_fields[1].placeholder="Prenom...";
+		form_fields[2].placeholder="Nom...";
+        form_fields[3].placeholder="Nom d'utilisateur..";
+		form_fields[4].placeholder='Email..';
+		form_fields[5].placeholder="Mot de passe...";
+		form_fields[6].placeholder="Confirmer mot de passe...";
 
 
 

@@ -57,7 +57,7 @@ class Client(models.Model):
     cli_membre = models.CharField(db_column='CLI_MEMBRE', blank=True, null=True, max_length=100)  # Field name made lowercase.
     cli_date_debut = models.DateField()  # Field name made lowercase.
     cli_date_fin = models.DateField()  # Field name made lowercase.
-
+    cli_num = models.IntegerField(db_column='CLI_NUM', blank=False)
     def __str__(self):
         return self.cli_nom
 
@@ -77,6 +77,7 @@ class AuthUser(models.Model):
     date_joined = models.DateTimeField()
     first_name = models.CharField(max_length=150)
     CLI_ID = models.ForeignKey(Client, on_delete=models.CASCADE)  # Field name made lowercase.
+    cli_num = models.IntegerField(db_column='CLI_NUM', blank=False)
     #MEMB_ID = models.ForeignKey(MembreComite, on_delete=models.CASCADE)
 
     class Meta:

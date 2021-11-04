@@ -24,7 +24,7 @@ Auteur : Daniele Castro
     <br>
         <div style="border: 1px solid ; text-align: center">
         <p><u>Résumé de la location :</u><br>
-        <p>Le statut de la location numéro {{ locationvelo.lv_loc_id.loc_id }} est :  <b>{{ locationvelo.lv_loc_id.loc_statut }}</b></p>
+        <p>Le statut de la location numéro {{ locationvelo.lv_loc_id.loc_num }} est :  <b>{{ locationvelo.lv_loc_id.loc_statut }}</b></p>
         {% if not locationvelo.termine and not locationvelo.annule %}
             <p>La location à commencé le <b>{{ locationvelo.date_debut }}</b> et prends fin le <b>{{ locationvelo.date_fin}}.</b></p>
             <p>La location se termine dans {{locationvelo.date_fin|timeuntil:date}}.</p>

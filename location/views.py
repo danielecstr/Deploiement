@@ -44,12 +44,12 @@ def location(request):
     messageMail = 'Bonjour, nous vous envoyons ce mail pour vous prévenir que votre location se termine dans 10 jours.' \
                   '\nVeuillez ne pas oublier de rendre votre vélo ou prolonger votre location depuis notre site : http://danielecstr.pythonanywhere.com/.' \
                   "\n\nToute l'équipe Bicyclette Bleue vous souhaite une bonne journée."
-    send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
+    #send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, listeMail, fail_silently=False)
 
     #Liste des locations
     locations = []
     for loc in locationvelo:
-        if loc.lv_loc_id.loc_statut != "En attente" and loc.lv_loc_id.loc_statut != "Demande de prolongation" and loc.lv_loc_id.loc_statut != "Demande de diminution":
+        if loc.loc_statut != "En attente" and loc.loc_statut != "Demande de prolongation" and loc.loc_statut != "Demande de diminution":
             locations.append(loc)
 
     #Filtrer les locations grace aux statuts
@@ -94,8 +94,8 @@ def locationEnAttente(request):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def confirmationLocation(request, pk):
-    location = Location.objects.get(loc_id=pk)
-    locationVelo = Location_Velo.objects.get(id=pk)
+    location = Location.objects.get(loc_num=pk)
+    locationVelo = Location_Velo.objects.get(loc_num=pk)
 
     if request.method=='POST':
         if location.loc_statut == "Demande de prolongation":
@@ -113,7 +113,7 @@ def confirmationLocation(request, pk):
         location.save()
 
         #Permet d'envoyer un mail selon la décision du membre
-        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
+        #send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
 
         return redirect('/location/locationEnAttente')
 
@@ -127,7 +127,7 @@ def confirmationLocation(request, pk):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def detailsLocation(request, id):
-    locationvelo = Location_Velo.objects.get(id=id)
+    locationvelo = Location_Velo.objects.get(loc_num=id)
     messageDescriptionVelo = f"Il n'y a pas de remarque"
     if locationvelo.lv_vel_id.vel_remarque != "" :
         messageDescriptionVelo = locationvelo.lv_vel_id.vel_remarque
@@ -150,7 +150,7 @@ def detailsLocation(request, id):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def detailsLocationEnAttente(request, id):
-    locationvelo = Location_Velo.objects.get(id=id)
+    locationvelo = Location_Velo.objects.get(loc_num=id)
     messageDescriptionVelo = f"Il n'y a pas de remarque"
     if locationvelo.lv_vel_id.vel_remarque != "" :
         messageDescriptionVelo = locationvelo.lv_vel_id.vel_remarque
@@ -208,9 +208,9 @@ def nouvelleLocation(request):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def modifierlocation(request, pk):
-    location = Location.objects.get(loc_id=pk)
+    location = Location.objects.get(loc_num=pk)
     formLocation=LocationForm(instance=location)
-    location2 = Location_Velo.objects.get(id=pk)
+    location2 = Location_Velo.objects.get(loc_num=pk)
     formLocationVelo = LocationVeloForm(instance=location2)
 
     if request.method=='POST':
@@ -230,8 +230,8 @@ def modifierlocation(request, pk):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def supprimerLocation(request, pk):
-    location = Location.objects.get(loc_id=pk)
-    locationVelo = Location_Velo.objects.get(id=pk)
+    location = Location.objects.get(loc_num=pk)
+    locationVelo = Location_Velo.objects.get(loc_num=pk)
     if request.method=='POST':
         locationVelo.lv_vel_id.vel_statut = "Libre"
         locationVelo.lv_vel_id.save()
@@ -247,8 +247,8 @@ def supprimerLocation(request, pk):
 @staff_member_required
 @login_required(login_url='/compte/login')
 def refuseLocationEnAttente(request, pk):
-    location = Location.objects.get(loc_id=pk)
-    locationVelo = Location_Velo.objects.get(id=pk)
+    location = Location.objects.get(loc_num=pk)
+    locationVelo = Location_Velo.objects.get(loc_num=pk)
     if request.method=='POST':
         if location.loc_statut == "Demande de prolongation":
             messageMail = "Votre demande de prolongation de la location à été refusée"
@@ -257,7 +257,7 @@ def refuseLocationEnAttente(request, pk):
         else:
             messageMail = "Votre demande de location à bien été refusé"
 
-        send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
+        #send_mail('La bicycletteBleue', messageMail , settings.EMAIL_HOST_USER, [location.loc_client.cli_mail], fail_silently=False)
 
         if location.loc_statut == "Demande de diminution" or location.loc_statut == "Demande de prolongation":
             location.loc_statut = "En cours"
@@ -318,7 +318,7 @@ def locationClient(request, pk):
 
 @login_required(login_url='/compte/login')
 def detailsLocationClient(request, id):
-    locationvelo = Location_Velo.objects.get(id=id)
+    locationvelo = Location_Velo.objects.get(loc_num=id)
     messageDescriptionVelo = f"Il n'y a pas de remarque"
     if locationvelo.lv_vel_id.vel_remarque != "" :
         messageDescriptionVelo = locationvelo.lv_vel_id.vel_remarque
@@ -341,9 +341,9 @@ def detailsLocationClient(request, id):
 
 @login_required(login_url='/compte/login')
 def supprimerLocationClient(request, pk):
-    location = Location.objects.get(loc_id=pk)
-    pk2 = location.loc_id
-    locationVelo = Location_Velo.objects.get(lv_loc_id=pk2)
+    location = Location.objects.get(loc_num=pk)
+    pk2 = location.loc_num
+    locationVelo = Location_Velo.objects.get(loc_num=pk2)
     if request.method=='POST':
         locationVelo.loc_statut = "Annulé"
         locationVelo.save()
@@ -362,7 +362,7 @@ def supprimerLocationClient(request, pk):
 
 @login_required(login_url='/compte/login')
 def modifierlocationClient(request, pk):
-    location = Location_Velo.objects.get(id=pk)
+    location = Location_Velo.objects.get(loc_num=pk)
     vieille_date = location.date_fin
     formLocationVelo = LocationVeloForm22(instance=location)
     messageErreur = ""
@@ -380,7 +380,7 @@ def modifierlocationClient(request, pk):
             elif vieille_date == formLocationVelo.cleaned_data.get('date_fin'):
                 messageErreur = "Veuillez inserer une date de fin différente de celle de la location"
             else:
-                location = Location.objects.get(loc_id=pk)
+                location = Location.objects.get(loc_num=pk)
                 location.date_modifier = vieille_date
                 if vieille_date > formLocationVelo.cleaned_data.get('date_fin'):
                     location.loc_statut = "Demande de diminution"
@@ -430,7 +430,7 @@ def choixVeloClient(request):
 def donneeLocationClient(request, pk):
     messageErreur = ""
     client = Client.objects.get(cli_id=request.user.id)
-    velo = Velo.objects.get(vel_id=pk)
+    velo = Velo.objects.get(vel_num=pk)
     clientForm = ClientForm(instance=client)
     if request.method == 'POST':
         clientForm = ClientForm(request.POST, instance=client)
@@ -452,7 +452,7 @@ def donneeLocationClient(request, pk):
 def finaliserLocationClient(request, pk):
     messageErreur = ""
     client = Client.objects.get(cli_id=request.user.id)
-    velo = Velo.objects.get(vel_id=pk)
+    velo = Velo.objects.get(vel_num=pk)
     formLocationVelo = LocationVeloForm2()
     if request.method == 'POST':
         formLocationVelo = LocationVeloForm2(request.POST)
@@ -475,7 +475,7 @@ def finaliserLocationClient(request, pk):
                 nbmax = Location.objects.latest('loc_id').loc_id
                 locaVelo = Location_Velo(loc_statut="En attente", date_fin=formLocationVelo.cleaned_data.get('date_fin'),
                                      date_debut=formLocationVelo.cleaned_data.get('date_debut'), lv_loc_id_id=nbmax,
-                                     id=nbmax, lv_vel_id_id=velo.vel_id)
+                                     id=nbmax, lv_vel_id_id=velo.vel_id, loc_num=nb)
                 locaVelo.save()
                 velo.vel_statut = "Reservé"
                 velo.save()

@@ -47,7 +47,8 @@ def inscriptionPage(request):
     if request.method=='POST':
         form = InscriptionForm(request.POST)
         if form.is_valid():
-            client = Client(cli_nom=form.cleaned_data.get('last_name'), cli_prenom=form.cleaned_data.get('first_name'),cli_mail=form.cleaned_data.get('email'))
+            nbmax = Client.objects.latest('cli_num').cli_num + 1
+            client = Client(cli_nom=form.cleaned_data.get('last_name'), cli_prenom=form.cleaned_data.get('first_name'),cli_mail=form.cleaned_data.get('email'), cli_num=nbmax)
             client.save()
             password = make_password(form.cleaned_data.get('password1'), salt=None, hasher='default')
             nbmax = Client.objects.latest('cli_id')

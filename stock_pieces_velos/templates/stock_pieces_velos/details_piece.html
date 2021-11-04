@@ -23,7 +23,7 @@ Auteur : Stanley Rochat
         N° de la pièce : {{piece.piece_num}} <br>
         Local : {{piece.local_id}} <br>
 
-        {% if piece.fourni_id %}}
+        {% if piece.fourni_id %}
         Fournisseur : {{piece.fourni_id}} <br>
         {% else %}
         Fournisseur : Aucun <br>
@@ -40,10 +40,6 @@ Auteur : Stanley Rochat
         {% else %}
         Remarques : <br>
         {% endif %}
-
-        <a href="#" role="button" class="btn btn-primary" aria-pressed="true"
-    style="margin-left: 30% ">Passer une commande</a>
-<!-- ajouter un href -->
 
         <a href="{% url 'stock_pieces_velos:indexStockPiecesVelos' %}" class="btn btn-primary" role="button" aria-pressed="true"
            style="margin-top: 2%"> <--- Retour au stock de velos </a>

@@ -26,7 +26,7 @@ Auteur : Daniele Castro
         {% if nbLocationEnCours >= 3 %}
             {{messageErreur}}
         {% else %}
-            <a href="{% url 'location:donneeLocationClient' velo.vel_id %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-bottom:20px">Je prends !</a><br>
+            <a href="{% url 'location:donneeLocationClient' velo.vel_num %}" class="btn btn-primary" role="button" aria-pressed="true" style="margin-bottom:20px">Je prends !</a><br>
         {% endif  %}
         <a href="{% url 'location:choixVeloClient' %}"> <--- Retour aux velos </a>
     </div>
